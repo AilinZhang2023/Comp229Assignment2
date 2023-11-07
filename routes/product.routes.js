@@ -15,6 +15,8 @@ router.put('/api/products/:id', productController.updateProduct);
 router.delete('/api/products/:id', productController.deleteProduct);
 // Route for removing all products (DELETE)
 router.delete('/api/products', productController.deleteAllProducts);
+// Route for getting products by name (GET)
+router.get('/api/products', productController.getProductsByName);
 
 router.get('/', (req, res) => {
     const message = { message: 'Welcome to DressStore application' };

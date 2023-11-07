@@ -76,6 +76,23 @@ const deleteAllProducts = (req, res) => {
 };
 
 //  Find products by name
+const getProductsByName = (req, res) => {
+  const name = req.query.name;
+    if (name){
+      const regex = new RegExp(name, 'i');
+      Product.find({ name: regex })
+      .then((products) => {
+        if (!products) {
+         res.status(404).json({ "error": err});
+        } else {
+          res.status(200).json(products);
+        }
+      })
+        .catch((err) => {
+           res.status(400).json({ "error": err});
+        });
+  }
+};
 
 module.exports = {
   createProduct,
@@ -85,6 +102,6 @@ module.exports = {
   deleteProduct,
   deleteAllProducts,
   //getAllPublishedProducts,
-  //getProductsByName,
+  getProductsByName,
   // Define other controller functions for CRUD operations
 };
